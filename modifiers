@@ -1,0 +1,29 @@
+modifier onlyTwoPlayer(){
+        require (participantRegistered <= 2 , "Exactly two players can participate! ");
+        _;
+    }
+    modifier notAlreadyRegistered()
+    {
+        require ( !(participantNumber[msg.sender] > 0) , "You are already registered in the game.");
+        _;
+    }
+    modifier gameOverMod()
+    {
+        require(gameOver == false," Game over! ");
+        _;
+    }check 
+    modifier registered()
+    {
+        require(!(participantNumber[msg.sender] == 0), " You are not registered for this game! ");
+        _;
+        }
+modifier alreadyMarked(uint _x, uint _y)
+    {
+        require(board[_x][_y] != 0," You cant play here!");
+        _;
+    }
+modifier notOrganizer()
+    {
+        require(!(msg.sender == organizer), "Organizer cannot play");
+        _;
+}
